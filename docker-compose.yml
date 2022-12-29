@@ -1,0 +1,19 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  frontend:
+    build: ./Frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  backend:
+    build: ./Backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - MONGO_DB_CONNECTION_STRING=mongodb+srv://<username>:<password>@cluster0.jwovnbc.mongodb.net/?retryWrites=true&w=majority
+      - MONGO_DB_NAME=cluster0
+      - REDIS_URI=redis://default:<password>@redis-12503.c1.us-east1-2.gce.cloud.redislabs.com:12503
+      
